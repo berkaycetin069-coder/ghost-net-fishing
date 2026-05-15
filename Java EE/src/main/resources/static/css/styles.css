@@ -1,0 +1,36 @@
+body {
+    background-color: #f6f8fb;
+}
+
+.page-shell {
+    max-width: 1080px;
+}
+
+.status-badge {
+    display: inline-flex;
+    justify-content: center;
+    letter-spacing: 0;
+    min-width: 9.5rem;
+    padding: 0.45rem 0.65rem;
+}
+
+.form-section {
+    background: #ffffff;
+    border: 1px solid #d9e2ec;
+    border-radius: 8px;
+}
+
+.data-label {
+    color: #5f6c7b;
+    font-weight: 600;
+}
+
+.table thead th {
+    color: #4b5563;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.status-card {
+    min-height: 150px;
+}

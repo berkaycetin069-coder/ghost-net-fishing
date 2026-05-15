@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ghost Net Fishing</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <div class="container page-shell">
+        <a class="navbar-brand" th:href="@{/}">Ghost Net Fishing</a>
+        <div class="navbar-nav">
+            <a class="nav-link active" th:href="@{/}">Startseite</a>
+            <a class="nav-link" th:href="@{/report}">Netz melden</a>
+            <a class="nav-link" th:href="@{/open-nets}">Offene Netze</a>
+            <a class="nav-link" th:href="@{/h2-console}">Entwicklung: H2-Konsole</a>
+        </div>
+    </div>
+</nav>
+
+<main class="container page-shell py-5">
+    <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+            <p class="text-uppercase text-primary fw-semibold mb-2">IU-Fallstudie</p>
+            <h1 class="display-5 fw-bold">Ghost Net Fishing</h1>
+            <p class="lead text-secondary">
+                Prototypische MVC-Webanwendung zum anonymen Melden, Übernehmen und Abschließen von Geisternetz-Fällen.
+            </p>
+            <div class="d-flex gap-2 flex-wrap">
+                <a class="btn btn-primary" th:href="@{/report}">Geisternetz melden</a>
+                <a class="btn btn-outline-primary" th:href="@{/open-nets}">Offene Geisternetze anzeigen</a>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="form-section p-4">
+                <h2 class="h4">Fachlicher Prozess</h2>
+                <p class="text-secondary mb-3">
+                    Statusübergänge laufen zentral über den Service Layer und sind in der Detailseite sichtbar.
+                </p>
+                <div class="border-top pt-3">
+                    <span class="fs-2 fw-bold" th:text="${openNetCount}">0</span>
+                    <span class="text-secondary">offene oder übernommene Geisternetze</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-3 mt-4">
+        <div class="col-md-3">
+            <div class="form-section p-3 h-100 status-card">
+                <span class="badge text-bg-primary mb-2">Gemeldet</span>
+                <p class="mb-0 text-secondary">Anonyme Meldung mit GPS-Daten, Größe und optionaler Beschreibung.</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-section p-3 h-100 status-card">
+                <span class="badge text-bg-warning mb-2">Bergung übernommen</span>
+                <p class="mb-0 text-secondary">Bergende Person ist zugeordnet und die Bergung läuft.</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-section p-3 h-100 status-card">
+                <span class="badge text-bg-success mb-2">Geborgen</span>
+                <p class="mb-0 text-secondary">Das Netz wurde erfolgreich geborgen.</p>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-section p-3 h-100 status-card">
+                <span class="badge text-bg-danger mb-2">Verschollen</span>
+                <p class="mb-0 text-secondary">Das Netz konnte nicht mehr gefunden werden.</p>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>

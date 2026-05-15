@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Geisternetz melden</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <div class="container page-shell">
+        <a class="navbar-brand" th:href="@{/}">Ghost Net Fishing</a>
+        <div class="navbar-nav">
+            <a class="nav-link" th:href="@{/}">Startseite</a>
+            <a class="nav-link active" th:href="@{/report}">Netz melden</a>
+            <a class="nav-link" th:href="@{/open-nets}">Offene Netze</a>
+            <a class="nav-link" th:href="@{/h2-console}">Entwicklung: H2-Konsole</a>
+        </div>
+    </div>
+</nav>
+
+<main class="container page-shell py-4">
+    <div class="mb-4">
+        <h1 class="h2">Geisternetz anonym erfassen</h1>
+        <p class="text-secondary mb-0">Personendaten sind für eine Meldung nicht erforderlich.</p>
+    </div>
+
+    <form class="form-section p-4" th:action="@{/report}" th:object="${ghostNet}" method="post" novalidate>
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label for="latitude" class="form-label">Breitengrad</label>
+                <input id="latitude" class="form-control" th:classappend="${#fields.hasErrors('latitude') ? 'is-invalid' : ''}" type="number" step="0.000001" th:field="*{latitude}" placeholder="54.178900">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('latitude')}" th:errors="*{latitude}"></div>
+            </div>
+            <div class="col-md-6">
+                <label for="longitude" class="form-label">Längengrad</label>
+                <input id="longitude" class="form-control" th:classappend="${#fields.hasErrors('longitude') ? 'is-invalid' : ''}" type="number" step="0.000001" th:field="*{longitude}" placeholder="7.889100">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('longitude')}" th:errors="*{longitude}"></div>
+            </div>
+            <div class="col-md-6">
+                <label for="estimatedSize" class="form-label">Geschätzte Größe in m2</label>
+                <input id="estimatedSize" class="form-control" th:classappend="${#fields.hasErrors('estimatedSize') ? 'is-invalid' : ''}" type="number" min="0.1" step="0.1" th:field="*{estimatedSize}" placeholder="25.0">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('estimatedSize')}" th:errors="*{estimatedSize}"></div>
+            </div>
+            <div class="col-12">
+                <label for="description" class="form-label">Beschreibung</label>
+                <textarea id="description" class="form-control" rows="4" th:field="*{description}" placeholder="Sichtung, Umgebung, Erreichbarkeit"></textarea>
+            </div>
+        </div>
+        <div class="d-flex gap-2 mt-4">
+            <button class="btn btn-primary" type="submit">Meldung speichern</button>
+            <a class="btn btn-outline-secondary" th:href="@{/}">Abbrechen</a>
+        </div>
+    </form>
+</main>
+</body>
+</html>
